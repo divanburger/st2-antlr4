@@ -1,0 +1,212 @@
+{
+    "fileTypes": [
+        "g4"
+    ],
+    "firstLineMatch": ".*\\bgrammar\\b.*;",
+    "name": "Antlr4 (Java)",
+    "patterns": [
+        {
+            "begin": "^\\s*(@[a-z]\\w+)\\s*{",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.operator.antlr"
+                }
+            },
+            "comment": "Global Action Section",
+            "end": "}",
+            "name": "source.java.embedded.antlr",
+            "patterns": [
+                {
+                    "include": "source.java"
+                }
+            ]
+        },
+        {
+            "begin": "^\\s*(fragment)?\\s*([A-Z]\\w+)",
+            "beginCaptures": {
+                "1": {
+                    "name": "keyword.operator.antlr"
+                },
+                "2": {
+                    "name": "storage.type.var.antlr"
+                }
+            },
+            "comment": "Lexer Rules",
+            "end": ";",
+            "name": "meta.rule.lexer.antlr",
+            "patterns": [
+                {
+                    "include": "#rule"
+                },
+                {
+                    "include": "#rule-lexer"
+                }
+            ]
+        },
+        {
+            "begin": "^\\s*([a-z]\\w+)",
+            "beginCaptures": {
+                "1": {
+                    "name": "storage.type.class.antlr"
+                }
+            },
+            "comment": "Parser Rules",
+            "end": ";",
+            "name": "meta.rule.parser.antlr",
+            "patterns": [
+                {
+                    "include": "#rule"
+                },
+                {
+                    "include": "#rule-parser"
+                }
+            ]
+        },
+        {
+            "match": "\\b(grammar|options|tokens|lexer grammar|parser grammar|throws|catch|finally|mode)\\b",
+            "name": "keyword.other.antlr"
+        },
+        {
+            "include": "#comments"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "begin": "(?=/\\*)",
+                    "end": "(?<=\\*/)",
+                    "name": "comment.block.antlr"
+                },
+                {
+                    "begin": "(?=//)",
+                    "end": "(?<=\\n)",
+                    "name": "comment.block.antlr"
+                }
+            ]
+        },
+        "embedded": {
+            "patterns": [
+                {
+                    "begin": "{",
+                    "end": "}",
+                    "name": "source.java.embedded.antlr",
+                    "patterns": [
+                        {
+                            "include": "source.java"
+                        }
+                    ]
+                }
+            ]
+        },
+        "escape-pattern": {
+            "patterns": [
+                {
+                    "match": "\\\\(u[0-9A-F]{4}|.)",
+                    "name": "constant.character.escape.antlr"
+                }
+            ]
+        },
+        "rule": {
+            "patterns": [
+                {
+                    "begin": "(returns|locals)\\s*\\[",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.operator.antlr"
+                        }
+                    },
+                    "end": "\\]",
+                    "name": "meta.action",
+                    "patterns": [
+                        {
+                            "include": "source.java"
+                        }
+                    ]
+                },
+                {
+                    "begin": "(@init|@after)\\s*\\{",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "keyword.operator.antlr"
+                        }
+                    },
+                    "end": "}",
+                    "name": "meta.action",
+                    "patterns": [
+                        {
+                            "include": "source.java"
+                        }
+                    ]
+                },
+                {
+                    "include": "#embedded"
+                },
+                {
+                    "begin": "'",
+                    "end": "'",
+                    "name": "string.quoted.single",
+                    "patterns": [
+                        {
+                            "include": "#escape-pattern"
+                        }
+                    ]
+                }
+            ]
+        },
+        "rule-lexer": {
+            "patterns": [
+                {
+                    "captures": {
+                        "1": {
+                            "name": "keyword.operator.antlr"
+                        },
+                        "2": {
+                            "name": "keyword.control.antlr"
+                        },
+                        "3": {
+                            "name": "support.constant.antlr"
+                        }
+                    },
+                    "match": "(->)\\s*(channel)\\((\\s*HIDDEN\\s*|.*)\\)"
+                },
+                {
+                    "include": "#escape-pattern"
+                },
+                {
+                    "match": "[\\.\\?\\+\\*\\[\\]\\~\\|]",
+                    "name": "keyword.operator"
+                }
+            ]
+        },
+        "rule-parser": {
+            "patterns": [
+                {
+                    "match": "[\\?\\+\\*\\|]",
+                    "name": "keyword.operator.antlr"
+                },
+                {
+                    "captures": {
+                        "1": {
+                            "name": "storage.type.var.antlr"
+                        },
+                        "2": {
+                            "name": "keyword.operator.antlr"
+                        }
+                    },
+                    "match": "\\b(\\w+)(=)"
+                },
+                {
+                    "match": "\\b[a-z]\\w+\\b",
+                    "name": "storage.type.function.antlr"
+                },
+                {
+                    "match": "\\b[A-Z]\\w+\\b",
+                    "name": "constant.other.antlr"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.antlr",
+    "uuid": "95178c9c-39f8-4905-90c9-3941377c9d74"
+}
