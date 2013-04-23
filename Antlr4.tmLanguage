@@ -9,7 +9,7 @@
 	<key>firstLineMatch</key>
 	<string>.*\bgrammar\b.*;</string>
 	<key>name</key>
-	<string>Antlr4 (Java)</string>
+	<string>Antlr4</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -28,14 +28,7 @@
 			<key>end</key>
 			<string>}</string>
 			<key>name</key>
-			<string>source.java.embedded.antlr</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>source.java</string>
-				</dict>
-			</array>
+			<string>meta.embedded</string>
 		</dict>
 		<dict>
 			<key>comment</key>
@@ -132,13 +125,6 @@
 					</dict>
 					<key>name</key>
 					<string>meta.action</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>source.java</string>
-						</dict>
-					</array>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -155,13 +141,6 @@
 					</dict>
 					<key>name</key>
 					<string>meta.action</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>source.java</string>
-						</dict>
-					</array>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -285,24 +264,14 @@
 					<key>end</key>
 					<string>}</string>
 					<key>name</key>
-					<string>source.java.embedded.antlr</string>
+					<string>meta.embedded</string>
 					<key>patterns</key>
 					<array>
-						<!--<dict>
-							<key>match</key>
-							<string>(\$)</string>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>variable.parameter.antlr</string>
-								</dict>
-							</dict>
-						</dict>-->
 						<dict>
-							<key>include</key>
-							<string>source.java</string>
+							<key>begin</key>
+							<string>{</string>
+							<key>end</key>
+							<string>}</string>
 						</dict>
 					</array>
 				</dict>
