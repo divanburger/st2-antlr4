@@ -1,0 +1,10 @@
+<snippet>
+	<name>Rule</name>
+	<content><![CDATA[${1:name}:
+	$2
+	;
+
+$0]]></content>
+	<tabTrigger>rule</tabTrigger>
+	<scope>source.antlr</scope>
+</snippet>
