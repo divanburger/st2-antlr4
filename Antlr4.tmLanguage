@@ -13,10 +13,27 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>comment</key>
-			<string>Global Action Section</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.antlr</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.antlr</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(lexer|parser)?\s*(grammar)\s*(\w+);</string>
+			<key>name</key>
+			<string>meta.header.antlr</string>
+		</dict>
+		<dict>
 			<key>begin</key>
-			<string>^\s*(@[a-z]\w+)\s*{</string>
+			<string>^\s*(@((lexer|parser)::)?\w+)\s*{</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -25,14 +42,21 @@
 					<string>keyword.operator.antlr</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Global Action Section</string>
 			<key>end</key>
 			<string>}</string>
 			<key>name</key>
 			<string>meta.embedded</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#embedded</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>Lexer Rules</string>
 			<key>begin</key>
 			<string>^\s*(fragment)?\s*([A-Z]\w+)</string>
 			<key>beginCaptures</key>
@@ -48,6 +72,8 @@
 					<string>storage.type.var.antlr</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Lexer Rules</string>
 			<key>end</key>
 			<string>;</string>
 			<key>name</key>
@@ -65,8 +91,6 @@
 			</array>
 		</dict>
 		<dict>
-			<key>comment</key>
-			<string>Parser Rules</string>
 			<key>begin</key>
 			<string>^\s*([a-z]\w+)</string>
 			<key>beginCaptures</key>
@@ -77,6 +101,8 @@
 					<string>storage.type.class.antlr</string>
 				</dict>
 			</dict>
+			<key>comment</key>
+			<string>Parser Rules</string>
 			<key>end</key>
 			<string>;</string>
 			<key>name</key>
@@ -106,6 +132,61 @@
 	</array>
 	<key>repository</key>
 	<dict>
+		<key>comments</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?=/\*)</string>
+					<key>end</key>
+					<string>(?&lt;=\*/)</string>
+					<key>name</key>
+					<string>comment.block.antlr</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(?=//)</string>
+					<key>end</key>
+					<string>(?&lt;=\n)</string>
+					<key>name</key>
+					<string>comment.block.antlr</string>
+				</dict>
+			</array>
+		</dict>
+		<key>embedded</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>{</string>
+					<key>end</key>
+					<string>}</string>
+					<key>name</key>
+					<string>meta.embedded</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#embedded</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>escape-pattern</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\(u[0-9A-F]{4}|.)</string>
+					<key>name</key>
+					<string>constant.character.escape.antlr</string>
+				</dict>
+			</array>
+		</dict>
 		<key>rule</key>
 		<dict>
 			<key>patterns</key>
@@ -113,8 +194,6 @@
 				<dict>
 					<key>begin</key>
 					<string>(returns|locals)\s*\[</string>
-					<key>end</key>
-					<string>\]</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -123,14 +202,14 @@
 							<string>keyword.operator.antlr</string>
 						</dict>
 					</dict>
+					<key>end</key>
+					<string>\]</string>
 					<key>name</key>
 					<string>meta.action</string>
 				</dict>
 				<dict>
 					<key>begin</key>
 					<string>(@init|@after)\s*\{</string>
-					<key>end</key>
-					<string>}</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -139,6 +218,8 @@
 							<string>keyword.operator.antlr</string>
 						</dict>
 					</dict>
+					<key>end</key>
+					<string>}</string>
 					<key>name</key>
 					<string>meta.action</string>
 				</dict>
@@ -168,8 +249,6 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>(->)\s*(channel)\((\s*HIDDEN\s*|.*)\)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -188,6 +267,8 @@
 							<string>support.constant.antlr</string>
 						</dict>
 					</dict>
+					<key>match</key>
+					<string>(-&gt;)\s*(channel)\((\s*HIDDEN\s*|.*)\)</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -212,8 +293,6 @@
 					<string>keyword.operator.antlr</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>\b(\w+)(=)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -227,6 +306,8 @@
 							<string>keyword.operator.antlr</string>
 						</dict>
 					</dict>
+					<key>match</key>
+					<string>\b(\w+)(=)</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -239,63 +320,6 @@
 					<string>\b[A-Z]\w+\b</string>
 					<key>name</key>
 					<string>constant.other.antlr</string>
-				</dict>
-			</array>
-		</dict>
-		<key>escape-pattern</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>\\(u[0-9A-F]{4}|.)</string>
-					<key>name</key>
-					<string>constant.character.escape.antlr</string>
-				</dict>
-			</array>
-		</dict>
-		<key>embedded</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>begin</key>
-					<string>{</string>
-					<key>end</key>
-					<string>}</string>
-					<key>name</key>
-					<string>meta.embedded</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string>{</string>
-							<key>end</key>
-							<string>}</string>
-						</dict>
-					</array>
-				</dict>
-			</array>
-		</dict>
-		<key>comments</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>begin</key>
-					<string>(?=/\*)</string>
-					<key>end</key>
-					<string>(?&lt;=\*/)</string>
-					<key>name</key>
-					<string>comment.block.antlr</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>(?=//)</string>
-					<key>end</key>
-					<string>(?&lt;=\n)</string>
-					<key>name</key>
-					<string>comment.block.antlr</string>
 				</dict>
 			</array>
 		</dict>

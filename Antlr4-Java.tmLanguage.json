@@ -6,7 +6,19 @@
     "name": "Antlr4 (Java)",
     "patterns": [
         {
-            "begin": "^\\s*(@[a-z]\\w+)\\s*{",
+            "captures": {
+                "1": {
+                    "name": "keyword.operator.antlr"
+                },
+                "2": {
+                    "name": "keyword.operator.antlr"
+                }
+            },
+            "match": "(lexer|parser)?\\s*(grammar)\\s*(\\w+);",
+            "name": "meta.header.antlr"
+        },
+        {
+            "begin": "^\\s*(@((lexer|parser)::)?\\w+)\\s*{",
             "beginCaptures": {
                 "1": {
                     "name": "keyword.operator.antlr"

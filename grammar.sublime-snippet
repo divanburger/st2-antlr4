@@ -1,9 +1,9 @@
 <snippet>
 	<name>Grammar</name>
-	<content><![CDATA[grammar ${1:name};
+	<content><![CDATA[grammar ${1:${TM_FILENAME/(.+)\..+|.*/$1/:name}};
 
-${1/(\w+).*/$1/}:
-	${2:}
+${2:parse}:
+	${3:}
 	;
 
 $0]]></content>
