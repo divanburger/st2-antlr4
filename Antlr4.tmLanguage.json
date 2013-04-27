@@ -37,7 +37,7 @@
             "begin": "^\\s*(fragment)?\\s*([A-Z]\\w+)",
             "beginCaptures": {
                 "1": {
-                    "name": "keyword.operator.antlr"
+                    "name": "entity.name.rule.antlr"
                 },
                 "2": {
                     "name": "storage.type.var.antlr"
@@ -59,7 +59,7 @@
             "begin": "^\\s*([a-z]\\w+)",
             "beginCaptures": {
                 "1": {
-                    "name": "storage.type.class.antlr"
+                    "name": "entity.name.rule.antlr"
                 }
             },
             "comment": "Parser Rules",

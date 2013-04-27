@@ -13,9 +13,7 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>begin</key>
-			<string>(lexer|parser)?\s*(grammar)</string>
-			<key>beginCaptures</key>
+			<key>captures</key>
 			<dict>
 				<key>1</key>
 				<dict>
@@ -28,8 +26,8 @@
 					<string>keyword.operator.antlr</string>
 				</dict>
 			</dict>
-			<key>end</key>
-			<string>;</string>
+			<key>match</key>
+			<string>(lexer|parser)?\s*(grammar)\s*(\w+);</string>
 			<key>name</key>
 			<string>meta.header.antlr</string>
 		</dict>
@@ -71,7 +69,7 @@
 				<key>2</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.var.antlr</string>
+					<string>entity.name.rule.antlr</string>
 				</dict>
 			</dict>
 			<key>comment</key>
@@ -100,7 +98,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.class.antlr</string>
+					<string>entity.name.rule.antlr</string>
 				</dict>
 			</dict>
 			<key>comment</key>

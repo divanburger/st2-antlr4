@@ -40,7 +40,7 @@
                     "name": "keyword.operator.antlr"
                 },
                 "2": {
-                    "name": "storage.type.var.antlr"
+                    "name": "entity.name.rule.antlr"
                 }
             },
             "comment": "Lexer Rules",
@@ -59,7 +59,7 @@
             "begin": "^\\s*([a-z]\\w+)",
             "beginCaptures": {
                 "1": {
-                    "name": "storage.type.class.antlr"
+                    "name": "entity.name.rule.antlr"
                 }
             },
             "comment": "Parser Rules",

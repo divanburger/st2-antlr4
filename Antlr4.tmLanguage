@@ -64,7 +64,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>keyword.operator.antlr</string>
+					<string>entity.name.rule.antlr</string>
 				</dict>
 				<key>2</key>
 				<dict>
@@ -98,7 +98,7 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
-					<string>storage.type.class.antlr</string>
+					<string>entity.name.rule.antlr</string>
 				</dict>
 			</dict>
 			<key>comment</key>
